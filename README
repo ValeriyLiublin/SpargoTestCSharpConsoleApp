@@ -1,0 +1,35 @@
+
+1. Поместить файл config.ini рядом с приложением
+
+
+2. Настроить подключение к БД в config.ini
+
+
+3. Добавить таблицы в БД:
+
+
+CREATE TABLE [apteka](
+	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[name] [text] NULL,
+	[address] [text] NULL,
+	[phone] [char](16) NULL
+) ON [PRIMARY];
+
+CREATE TABLE [tovar](
+	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[name] [char](64) NULL
+) ON [PRIMARY];
+
+CREATE TABLE [sklad](
+	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[apteka_id] [int] NOT NULL DEFAULT (0),
+	[name] [char](32) NULL
+) ON [PRIMARY];
+
+CREATE TABLE [batch](
+	[id] [int] PRIMARY KEY IDENTITY(1,1) NOT NULL,
+	[sklad_id] [int] NOT NULL DEFAULT (0),
+	[tovar_id] [int] NOT NULL DEFAULT (0),
+	[num] [int] NOT NULL DEFAULT (0)
+) ON [PRIMARY];
+
